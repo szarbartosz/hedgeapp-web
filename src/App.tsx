@@ -2,7 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/tree.png";
 import "./App.css";
 
-function App() {
+const App: React.FC = () => {
   const [count, setCount] = useState(0);
 
   return (
@@ -20,6 +20,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
