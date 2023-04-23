@@ -2,14 +2,13 @@ import { useRouteError } from 'react-router-dom';
 
 const ErrorPage: React.FC = () => {
   const error = useRouteError();
-  console.error(error);
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
+    <div className="flex h-full w-full flex-col items-center justify-center">
+      <p className="bold text-2xl">Oops!</p>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>
-        <i>{error.statusText || error.message}</i>
+        <i>{error?.statusText || error?.message}</i>
       </p>
     </div>
   );

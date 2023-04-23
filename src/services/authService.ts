@@ -1,9 +1,19 @@
 import axios from 'axios';
-import { LoginInputs } from '../types/auth';
+import { AuthInputs } from '../types/auth';
 
-export const login = (credentials: LoginInputs) =>
+export const signIn = (credentials: AuthInputs) =>
   axios
     .post(`${import.meta.env.VITE_BACKEND_DOMAIN}/login`, {
+      email: credentials.email,
+      password: credentials.password,
+    })
+    .then((res) => {
+      return res.data;
+    });
+
+export const signUp = (credentials: AuthInputs) =>
+  axios
+    .post(`${import.meta.env.VITE_BACKEND_DOMAIN}/register`, {
       email: credentials.email,
       password: credentials.password,
     })

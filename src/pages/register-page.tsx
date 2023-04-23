@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { signIn } from '../services/authService';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import treeIcon from '../assets/tree.png';
 import { AuthInputs } from '../types/auth';
@@ -8,8 +7,9 @@ import { useNavigate } from 'react-router-dom';
 import { ErrorModal } from '../components/ErrorModal';
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
+import { signUp } from '../services/authService';
 
-export const SignIn: React.FC = () => {
+export const SignUp: React.FC = () => {
   const {
     register,
     handleSubmit,
@@ -20,7 +20,7 @@ export const SignIn: React.FC = () => {
   const navigate = useNavigate();
 
   const mutation = useMutation({
-    mutationFn: signIn,
+    mutationFn: signUp,
     onSuccess: (data) => {
       console.log(data);
       navigate('/');
@@ -59,13 +59,13 @@ export const SignIn: React.FC = () => {
               transition={{ duration: 0.5 }}
             >
               <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-                Zaloguj się!
+                Zarejestruj się!
               </h2>
               <p className="mt-2 text-center text-sm text-gray-600">
-                Jesteś tu pierwszy raz?{' '}
-                <NavLink to={'/register'}>
+                Masz już konto?{' '}
+                <NavLink to={'/login'}>
                   <a className="font-medium text-emerald-600 hover:text-emerald-500">
-                    Zarejestruj się!
+                    Zaloguj się!
                   </a>
                 </NavLink>
               </p>
@@ -112,7 +112,7 @@ export const SignIn: React.FC = () => {
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.5 }}
                 >
-                  Zaloguj
+                  Zarejestruj
                 </motion.div>
               </button>
             </div>
