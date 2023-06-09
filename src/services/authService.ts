@@ -3,10 +3,16 @@ import { AuthInputs } from '../types/auth';
 
 export const signIn = (credentials: AuthInputs) =>
   axios
-    .post(`${import.meta.env.VITE_BACKEND_DOMAIN}/login`, {
-      email: credentials.email,
-      password: credentials.password,
-    })
+    .post(
+      `${import.meta.env.VITE_BACKEND_DOMAIN}/login`,
+      {
+        email: credentials.email,
+        password: credentials.password,
+      },
+      {
+        withCredentials: true,
+      }
+    )
     .then((res) => {
       return res.data;
     });
