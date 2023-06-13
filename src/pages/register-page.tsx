@@ -22,7 +22,6 @@ export const SignUp: React.FC = () => {
   const mutation = useMutation({
     mutationFn: signUp,
     onSuccess: (data) => {
-      console.log(data);
       navigate('/');
     },
   });

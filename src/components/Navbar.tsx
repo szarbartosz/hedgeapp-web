@@ -1,19 +1,22 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import hedgehogIcon from '../assets/hedgehog.png';
 import treeIcon from '../assets/tree.png';
+import { Link } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Pulpit', href: '#', current: true },
-  { name: 'Dodaj obiekt', href: '#', current: false },
+  { name: 'Pulpit', href: 'locations' },
+  { name: 'Dodaj obiekt', href: 'add/location' },
 ];
 
 const classNames = (...classes: string[]) => classes.filter(Boolean).join(' ');
 
 const Navbar: React.FC = () => {
+  const [current, setCurrent] = useState(0);
+
   return (
     <Disclosure as="nav" className="bg-neutral-100 shadow-md">
       {({ open }) => (
@@ -52,19 +55,19 @@ const Navbar: React.FC = () => {
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
-                    {navigation.map((item) => (
+                    {navigation.map((item, index) => (
                       <a
                         key={item.name}
-                        href={item.href}
                         className={classNames(
-                          item.current
+                          index === current
                             ? 'text-emerald-600'
                             : 'text-neutral-600 hover:text-emerald-600',
                           'rounded-md px-3 py-2 text-base font-medium'
                         )}
-                        aria-current={item.current ? 'page' : undefined}
+                        aria-current={index === current ? 'page' : undefined}
+                        onClick={() => setCurrent(index)}
                       >
-                        {item.name}
+                        <Link to={item.href}>{item.name}</Link>
                       </a>
                     ))}
                   </div>
@@ -140,20 +143,20 @@ const Navbar: React.FC = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
-              {navigation.map((item) => (
+              {navigation.map((item, index) => (
                 <Disclosure.Button
                   key={item.name}
-                  as="a"
-                  href={item.href}
                   className={classNames(
-                    item.current
+                    index === current
                       ? 'text-emerald-600'
                       : 'text-neutral-600 hover:text-emerald-600',
                     'block rounded-md px-3 py-2 text-base font-medium'
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={index === current ? 'page' : undefined}
                 >
-                  {item.name}
+                  <div onClick={() => setCurrent(index)}>
+                    <Link to={item.href}>{item.name}</Link>
+                  </div>
                 </Disclosure.Button>
               ))}
             </div>

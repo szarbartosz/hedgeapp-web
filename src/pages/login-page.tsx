@@ -1,13 +1,13 @@
-import { useMutation } from '@tanstack/react-query';
 import React from 'react';
-import { signIn } from '../services/authService';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import treeIcon from '../assets/tree.png';
-import { AuthInputs } from '../types/auth';
-import { useNavigate } from 'react-router-dom';
-import { ErrorModal } from '../components/ErrorModal';
-import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { signIn } from '../services/authService';
+import { AuthInputs } from '../types/auth';
+import { ErrorModal } from '../components/ErrorModal';
+import treeIcon from '../assets/tree.png';
 
 export const SignIn: React.FC = () => {
   const {
@@ -22,7 +22,6 @@ export const SignIn: React.FC = () => {
   const mutation = useMutation({
     mutationFn: signIn,
     onSuccess: (data) => {
-      console.log(data);
       navigate('/');
     },
   });

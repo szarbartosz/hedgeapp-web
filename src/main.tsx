@@ -5,14 +5,26 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import App from './App';
 import ErrorPage from './pages/error-page';
 import { SignIn } from './pages/login-page';
-import './index.css';
 import { SignUp } from './pages/register-page';
+import './index.css';
+import Locations from './pages/locations-page';
+import AddLocation from './pages/add-location-page';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/locations',
+        element: <Locations />,
+      },
+      {
+        path: 'add/location',
+        element: <AddLocation />,
+      },
+    ],
   },
   {
     path: '/login',
