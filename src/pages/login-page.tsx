@@ -33,7 +33,7 @@ export const SignIn: React.FC = () => {
 
   return (
     <>
-      <div className="flex min-h-full items-center justify-center sm:px-6 lg:px-8">
+      <div className="flex min-h-full items-center justify-center px-6 sm:px-8 lg:px-10">
         <div className="w-full max-w-md space-y-8">
           {mutation.isError && (
             <ErrorModal
