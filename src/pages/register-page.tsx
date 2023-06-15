@@ -32,7 +32,7 @@ export const SignUp: React.FC = () => {
 
   return (
     <>
-      <div className="flex min-h-full items-center justify-center sm:px-6 lg:px-8">
+      <div className="flex min-h-full items-center justify-center px-6 sm:px-8 lg:px-10">
         <div className="w-full max-w-md space-y-8">
           {mutation.isError && (
             <ErrorModal
@@ -63,7 +63,7 @@ export const SignUp: React.FC = () => {
               <p className="mt-2 text-center text-sm text-gray-600">
                 Masz już konto?{' '}
                 <NavLink to={'/login'}>
-                  <a className="font-medium text-emerald-600 hover:text-emerald-500">
+                  <a className="font-medium text-emerald-600 hover:text-emerald-700">
                     Zaloguj się!
                   </a>
                 </NavLink>
@@ -104,7 +104,7 @@ export const SignUp: React.FC = () => {
             <div>
               <button
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+                className="group relative flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white hover:bg-emerald-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
               >
                 <motion.div
                   initial={{ y: 0, opacity: 0 }}

@@ -11,21 +11,19 @@ const Locations: React.FC = () => {
         withCredentials: true,
       })
       .then((res) => {
+        console.log(res.data.locations);
         setLocations(res.data.locations);
-        return res.data;
       });
   }, []);
 
   return (
-    <>
+    <div className="flex-col">
       {locations.length > 0 ? (
-        locations.map((loccation: any) => {
-          <Location />;
-        })
+        locations.map((location: any) => <Location />)
       ) : (
         <h1>Nie zdefiniowałeś jeszcze żadnej inwestycji!</h1>
       )}
-    </>
+    </div>
   );
 };
 

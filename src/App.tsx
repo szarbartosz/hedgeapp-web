@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom';
 const App: React.FC = () => (
   <div className="App">
     <Navbar />
-    <div className="container mx-4 py-8 sm:mx-6 md:mx-8 lg:mx-10">
+    <div className="flex min-h-full items-center justify-center px-6 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
       <Outlet />
     </div>
   </div>
