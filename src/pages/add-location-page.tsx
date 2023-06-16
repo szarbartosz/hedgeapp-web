@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Developer, LocationAddInputs, Status } from '../types/rest';
+import { Developer, LocationInputs, Status } from '../types/rest';
 import { useMutation } from '@tanstack/react-query';
 import {
   addLocation,
@@ -30,15 +30,14 @@ const AddLocation: React.FC = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
-  } = useForm<LocationAddInputs>();
+  } = useForm<LocationInputs>();
 
   const mutation = useMutation({
     mutationFn: addLocation,
   });
 
-  const onSubmit: SubmitHandler<LocationAddInputs> = (data) => {
+  const onSubmit: SubmitHandler<LocationInputs> = (data) => {
     mutation.mutate(data);
   };
 
@@ -47,7 +46,7 @@ const AddLocation: React.FC = () => {
       <div>
         <label
           htmlFor="locationName"
-          className="block text-sm font-medium leading-6 text-gray-900"
+          className="block text-sm font-medium leading-6"
         >
           Nazwa obiektu
         </label>
@@ -60,7 +59,7 @@ const AddLocation: React.FC = () => {
                 ? 'ring-red-600 focus:ring-red-600'
                 : 'focus:ring-emerald-600'
             }
-            sm:leading-6' block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset sm:text-sm`}
+            sm:leading-6' block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset sm:text-sm`}
           />
           {errors.locationName && (
             <span className="block text-sm font-medium leading-6 text-red-600">
@@ -73,7 +72,7 @@ const AddLocation: React.FC = () => {
       <div>
         <label
           htmlFor="developer"
-          className="block text-sm font-medium leading-6 text-gray-900"
+          className="block text-sm font-medium leading-6"
         >
           Deweloper
         </label>
@@ -86,7 +85,7 @@ const AddLocation: React.FC = () => {
                 ? 'ring-red-600 focus:ring-red-600'
                 : 'focus:ring-emerald-600'
             }
-            block w-full cursor-pointer rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6`}
+            block w-full cursor-pointer rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6`}
           >
             <option disabled value="">
               wybierz dewelopera
@@ -106,10 +105,7 @@ const AddLocation: React.FC = () => {
       </div>
 
       <div>
-        <label
-          htmlFor="status"
-          className="block text-sm font-medium leading-6 text-gray-900"
-        >
+        <label htmlFor="status" className="block text-sm font-medium leading-6">
           Status
         </label>
         <div className="mt-2">
@@ -121,7 +117,7 @@ const AddLocation: React.FC = () => {
                 ? 'ring-red-600 focus:ring-red-600'
                 : 'focus:ring-emerald-600'
             }
-            block w-full cursor-pointer rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6`}
+            block w-full cursor-pointer rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6`}
           >
             <option disabled value="">
               wybierz status
@@ -143,7 +139,7 @@ const AddLocation: React.FC = () => {
       <div>
         <label
           htmlFor="issueDate"
-          className="block text-sm font-medium leading-6 text-gray-900"
+          className="block text-sm font-medium leading-6"
         >
           Data zgłoszenia wniosku
         </label>
@@ -151,7 +147,7 @@ const AddLocation: React.FC = () => {
           <input
             {...register('issueDate')}
             type="date"
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -159,7 +155,7 @@ const AddLocation: React.FC = () => {
       <div>
         <label
           htmlFor="inspectionDate"
-          className="block text-sm font-medium leading-6 text-gray-900"
+          className="block text-sm font-medium leading-6"
         >
           Data oględzin
         </label>
@@ -167,7 +163,7 @@ const AddLocation: React.FC = () => {
           <input
             {...register('inspectionDate')}
             type="date"
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -175,7 +171,7 @@ const AddLocation: React.FC = () => {
       <div>
         <label
           htmlFor="deforestationDate"
-          className="block text-sm font-medium leading-6 text-gray-900"
+          className="block text-sm font-medium leading-6"
         >
           Termin wycinki
         </label>
@@ -183,7 +179,7 @@ const AddLocation: React.FC = () => {
           <input
             {...register('deforestationDate')}
             type="date"
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -191,7 +187,7 @@ const AddLocation: React.FC = () => {
       <div>
         <label
           htmlFor="plantingDate"
-          className="block text-sm font-medium leading-6 text-gray-900"
+          className="block text-sm font-medium leading-6"
         >
           Termin nasadzeń
         </label>
@@ -199,7 +195,7 @@ const AddLocation: React.FC = () => {
           <input
             {...register('plantingDate')}
             type="date"
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
+            className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -213,13 +209,10 @@ const AddLocation: React.FC = () => {
           />
         </div>
         <div className="text-sm leading-6">
-          <label
-            htmlFor="deforestationDone"
-            className="font-medium text-gray-900"
-          >
+          <label htmlFor="deforestationDone" className="font-medium">
             Wycinka wykonana
           </label>
-          <p className="text-gray-500">
+          <p className="text-neutral-500">
             Zaznacz to pole, jeżeli wycinka została już wykonana.
           </p>
         </div>
@@ -234,10 +227,10 @@ const AddLocation: React.FC = () => {
           />
         </div>
         <div className="text-sm leading-6">
-          <label htmlFor="plantingDone" className="font-medium text-gray-900">
+          <label htmlFor="plantingDone" className="font-medium">
             Nasadzenia wykonane
           </label>
-          <p className="text-gray-500">
+          <p className="text-neutral-500">
             Zaznacz to pole, jeżeli nasadzenia zostały już wykonane.
           </p>
         </div>
