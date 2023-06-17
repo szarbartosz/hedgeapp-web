@@ -22,7 +22,7 @@ export const SignIn: React.FC = () => {
   const mutation = useMutation({
     mutationFn: signIn,
     onSuccess: (data) => {
-      navigate('/');
+      navigate('/locations');
     },
   });
 

@@ -1,16 +1,21 @@
-import { Developer, Location, LocationInputs, Status } from '../types/rest';
+import {
+  DeveloperType,
+  LocationType,
+  LocationInputs,
+  StatusType,
+} from '../types/rest';
 
 export const mapLocation = (
-  location: Location,
-  developers: Developer[],
-  statuses: Status[]
+  location: LocationType,
+  developers: DeveloperType[],
+  statuses: StatusType[]
 ): LocationInputs => ({
   locationName: location.name,
   developer:
-    developers.find((developer) => developer.id === location.developer_id)
+    developers?.find((developer) => developer.id === location.developer_id)
       ?.name || 'deweloper nieznany',
   status:
-    statuses.find((status) => status.id === location.status_id)?.name ||
+    statuses?.find((status) => status.id === location.status_id)?.name ||
     'status nieznany',
   issueDate: formatDate(location.issue_date),
   inspectionDate: formatDate(location.inspection_date),

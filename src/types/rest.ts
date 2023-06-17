@@ -1,14 +1,14 @@
-export type Developer = {
+export type DeveloperType = {
   id: number;
   name: string;
 };
 
-export type Status = {
+export type StatusType = {
   id: number;
   name: string;
 };
 
-export type Location = {
+export type LocationType = {
   status_id: number;
   developer_id: number;
   name: string;

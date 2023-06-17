@@ -1,48 +1,43 @@
 import { useEffect, useState } from 'react';
-import { Developer, LocationInputs, Status } from '../types/rest';
+import { LocationInputs, LocationType } from '../types/rest';
 import {
   fetchDevelopers,
   fetchLocations,
   fetchStatuses,
 } from '../services/restService';
-import { mapLocation } from '../mappers/locationMapper';
 import Location from '../components/Location';
+import { useQuery } from '@tanstack/react-query';
+import { mapLocation } from '../mappers/locationMapper';
+import WavingTrees from '../components/WavingTrees';
+import { motion } from 'framer-motion';
 
 const Locations: React.FC = () => {
-  const [locations, setLocations] = useState<LocationInputs[]>([]);
-  const [developers, setDevelopers] = useState<Developer[]>([]);
-  const [statuses, setStatuses] = useState<Status[]>([]);
+  const [mappedLocations, setMappedLocations] = useState<LocationInputs[]>([]);
+
+  const developers = useQuery(['developers'], fetchDevelopers);
+  const statuses = useQuery(['statuses'], fetchStatuses);
+  const locations = useQuery(['locations'], fetchLocations);
 
   useEffect(() => {
-    fetchDevelopers().then((developers) => {
-      if (Array.isArray(developers) && developers.length) {
-        setDevelopers(developers);
-      }
-    });
-
-    fetchStatuses().then((statuses) => {
-      if (Array.isArray(statuses) && statuses.length) {
-        setStatuses(statuses);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    fetchLocations().then((locations) => {
-      if (Array.isArray(locations) && locations.length) {
-        setLocations(
-          locations.map((location) =>
-            mapLocation(location, developers, statuses)
+    if (developers.isSuccess && locations.isSuccess) {
+      fetchLocations().then((locations) => {
+        setMappedLocations(
+          locations.map((location: LocationType) =>
+            mapLocation(location, developers.data, statuses.data)
           )
         );
-      }
-    });
+      });
+    }
   }, [developers, statuses]);
 
   return (
     <>
-      {locations.length > 0 ? (
-        <div className="flex max-h-screen min-w-full flex-col items-center">
+      {mappedLocations.length > 0 ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex max-h-screen min-w-full flex-col items-center"
+        >
           <table className="w-3/4 table-auto divide-y divide-gray-600 text-left text-sm">
             <thead>
               <tr>
@@ -54,12 +49,14 @@ const Locations: React.FC = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-600">
-              {locations.map((location: LocationInputs) => (
+              {mappedLocations.map((location: LocationInputs) => (
                 <Location {...location} />
               ))}
             </tbody>
           </table>
-        </div>
+        </motion.div>
+      ) : locations.isLoading || locations.isSuccess ? (
+        <WavingTrees />
       ) : (
         <h1>Nie zdefiniowałeś jeszcze żadnej inwestycji!</h1>
       )}
