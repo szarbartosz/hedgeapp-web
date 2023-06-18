@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { LocationInputs, LocationType } from '../types/rest';
+import { LocationInputs } from '../types/rest';
 import {
   fetchDevelopers,
   fetchLocations,
@@ -7,9 +6,10 @@ import {
 } from '../services/restService';
 import Location from '../components/Location';
 import { useQuery } from '@tanstack/react-query';
-import { mapLocation } from '../mappers/locationMapper';
+import { mapLocations } from '../services/locationMapper';
 import WavingTrees from '../components/WavingTrees';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const Locations: React.FC = () => {
   const [mappedLocations, setMappedLocations] = useState<LocationInputs[]>([]);
@@ -19,16 +19,12 @@ const Locations: React.FC = () => {
   const locations = useQuery(['locations'], fetchLocations);
 
   useEffect(() => {
-    if (developers.isSuccess && locations.isSuccess) {
-      fetchLocations().then((locations) => {
-        setMappedLocations(
-          locations.map((location: LocationType) =>
-            mapLocation(location, developers.data, statuses.data)
-          )
-        );
-      });
+    if (locations.isSuccess && developers.isSuccess && statuses.isSuccess) {
+      setMappedLocations(
+        mapLocations(locations.data, developers.data, statuses.data)
+      );
     }
-  }, [developers, statuses]);
+  }, [locations.isSuccess, developers.isSuccess, statuses.isSuccess]);
 
   return (
     <>
@@ -50,7 +46,7 @@ const Locations: React.FC = () => {
             </thead>
             <tbody className="divide-y divide-gray-600">
               {mappedLocations.map((location: LocationInputs) => (
-                <Location {...location} />
+                <Location key={location.locationId} {...location} />
               ))}
             </tbody>
           </table>

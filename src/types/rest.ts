@@ -9,6 +9,7 @@ export type StatusType = {
 };
 
 export type LocationType = {
+  id: number;
   status_id: number;
   developer_id: number;
   name: string;
@@ -21,6 +22,7 @@ export type LocationType = {
 };
 
 export type LocationInputs = {
+  locationId: number;
   locationName: string;
   developer: string;
   status: string;

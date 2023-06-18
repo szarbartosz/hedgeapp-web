@@ -7,6 +7,7 @@ import soilIcon from '../assets/soil.png';
 import plantIcon from '../assets/plant.png';
 
 const Location: React.FC<LocationInputs> = ({
+  locationId,
   locationName,
   status,
   issueDate,
@@ -46,7 +47,7 @@ const Location: React.FC<LocationInputs> = ({
   };
 
   return (
-    <tr>
+    <tr className="cursor-pointer hover:bg-neutral-200">
       <td className="p-2">{locationName}</td>
       <td className="py-2">{status}</td>
       <td className="py-2">{issueDate}</td>

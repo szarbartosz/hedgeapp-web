@@ -5,11 +5,21 @@ import {
   StatusType,
 } from '../types/rest';
 
-export const mapLocation = (
+export const mapLocations = (
+  locations: LocationType[],
+  developers: DeveloperType[],
+  statuses: StatusType[]
+): LocationInputs[] =>
+  locations.map((location: LocationType) =>
+    mapLocation(location, developers, statuses)
+  );
+
+const mapLocation = (
   location: LocationType,
   developers: DeveloperType[],
   statuses: StatusType[]
 ): LocationInputs => ({
+  locationId: location.id,
   locationName: location.name,
   developer:
     developers?.find((developer) => developer.id === location.developer_id)

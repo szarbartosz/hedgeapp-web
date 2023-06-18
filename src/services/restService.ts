@@ -25,7 +25,17 @@ export const fetchLocations = () =>
       withCredentials: true,
     })
     .then((res) => {
+      console.log(res.data.locations);
       return res.data?.locations;
+    });
+
+export const fetchLocation = (id: number) =>
+  axios
+    .get(`${import.meta.env.VITE_BACKEND_DOMAIN}/locations/${id}`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      return res.data?.location;
     });
 
 export const addLocation = (data: LocationInputs) =>
