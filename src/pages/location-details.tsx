@@ -40,7 +40,7 @@ const Location: React.FC = () => {
         animate={{ opacity: 1 }}
         className="flex max-h-screen min-w-full flex-col items-center"
       >
-        <table className="w-3/4 table-auto divide-y divide-gray-600 text-left text-sm">
+        <table className="min-w-full max-w-xs table-auto divide-y divide-gray-600 text-left text-sm sm:min-w-max">
           <tbody className="divide-y divide-gray-600">
             <tr>
               <th className="w-1/2 p-4 text-right">Obiekt</th>

@@ -21,15 +21,15 @@ const LocationRow: React.FC<LocationInputs> = ({
       onClick={() => navigate(`${locationId}`)}
     >
       <td className="p-2">{locationName}</td>
-      <td className="py-2">{status}</td>
-      <td className="hidden py-2 sm:block">{issueDate}</td>
+      <td className="hidden py-2 sm:table-cell">{status}</td>
+      <td className="hidden py-2 sm:table-cell">{issueDate}</td>
       <td className="py-2">
         <DeforestationIndicator deforestationDone={deforestationDone} justify />
       </td>
       <td className="py-2">
         <PlantingIndicator plantingDone={plantingDone} justify />
       </td>
-      <td className="p-2">
+      <td className="hidden py-2 sm:table-cell">
         <FontAwesomeIcon icon={faPencil} />
       </td>
     </tr>

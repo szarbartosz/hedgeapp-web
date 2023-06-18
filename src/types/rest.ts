@@ -33,3 +33,7 @@ export type LocationInputs = {
   plantingDate: string;
   plantingDone: boolean;
 };
+
+export type DeveloperInputs = {
+  name: string;
+};

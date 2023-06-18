@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LocationInputs } from '../types/rest';
+import { DeveloperInputs, LocationInputs } from '../types/rest';
 
 export const fetchDevelopers = () =>
   axios
@@ -60,6 +60,21 @@ export const addLocation = (data: LocationInputs) =>
           : null,
         deforestation_done: data.deforestationDone,
         planting_done: data.plantingDone,
+      },
+      {
+        withCredentials: true,
+      }
+    )
+    .then((res) => {
+      return res.data;
+    });
+
+export const addDeveloper = (data: DeveloperInputs) =>
+  axios
+    .post(
+      `${import.meta.env.VITE_BACKEND_DOMAIN}/developers`,
+      {
+        name: data.name,
       },
       {
         withCredentials: true,

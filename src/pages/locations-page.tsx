@@ -34,12 +34,12 @@ const Locations: React.FC = () => {
           animate={{ opacity: 1 }}
           className="flex max-h-screen min-w-full flex-col items-center"
         >
-          <table className="w-3/4 table-auto divide-y divide-gray-600 text-left text-sm">
+          <table className="min-w-full max-w-xs table-auto divide-y divide-gray-600 text-left text-sm">
             <thead>
               <tr>
                 <th className="px-2 py-4">Obiekt</th>
-                <th className="py-4">Status</th>
-                <th className="hidden py-4 sm:block">
+                <th className="hidden py-4 sm:table-cell">Status</th>
+                <th className="hidden py-4 sm:table-cell">
                   Data związana ze statusem
                 </th>
                 <th className="py-4 text-center">Wycinka</th>

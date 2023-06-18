@@ -10,6 +10,7 @@ import './index.css';
 import Locations from './pages/locations-page';
 import AddLocation from './pages/add-location-page';
 import Location from './pages/location-details';
+import AddDeveloper from './pages/add-developer-page';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: 'add/location',
         element: <AddLocation />,
+      },
+      {
+        path: 'add/developer',
+        element: <AddDeveloper />,
       },
     ],
   },

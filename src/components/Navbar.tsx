@@ -6,8 +6,9 @@ import treeIcon from '../assets/tree.png';
 import { Link, useLocation } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Pulpit', href: '/locations' },
+  { name: 'Lista obiektów', href: '/locations' },
   { name: 'Dodaj obiekt', href: '/add/location' },
+  { name: 'Dodaj dewelopera', href: '/add/developer' },
   { name: 'Ustawienia', href: '/settings' },
 ];
 
@@ -17,7 +18,7 @@ const Navbar: React.FC = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="fixed w-full">
+    <div className="fixed z-10 w-full">
       <Disclosure as="nav" className="bg-neutral-100 shadow-md">
         {({ open }) => (
           <>

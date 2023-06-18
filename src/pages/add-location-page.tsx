@@ -8,6 +8,7 @@ import {
   fetchDevelopers,
   fetchStatuses,
 } from '../services/restService';
+import { useNavigate } from 'react-router-dom';
 
 const AddLocation: React.FC = () => {
   const [developers, setDevelopers] = useState<DeveloperType[]>([]);
@@ -33,8 +34,13 @@ const AddLocation: React.FC = () => {
     formState: { errors },
   } = useForm<LocationInputs>();
 
+  const navigate = useNavigate();
+
   const mutation = useMutation({
     mutationFn: addLocation,
+    onSuccess: () => {
+      navigate('/locations');
+    },
   });
 
   const onSubmit: SubmitHandler<LocationInputs> = (data) => {
@@ -43,7 +49,10 @@ const AddLocation: React.FC = () => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-      <form onSubmit={handleSubmit(onSubmit)} className="max-w-md space-y-6">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-72 space-y-6 sm:w-full"
+      >
         <div>
           <label
             htmlFor="locationName"
