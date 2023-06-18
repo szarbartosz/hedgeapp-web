@@ -4,7 +4,7 @@ import {
   fetchLocations,
   fetchStatuses,
 } from '../services/restService';
-import Location from '../components/Location';
+import LocationRow from '../components/LocationRow';
 import { useQuery } from '@tanstack/react-query';
 import { mapLocations } from '../services/locationMapper';
 import WavingTrees from '../components/WavingTrees';
@@ -39,14 +39,16 @@ const Locations: React.FC = () => {
               <tr>
                 <th className="px-2 py-4">Obiekt</th>
                 <th className="py-4">Status</th>
-                <th className="py-4">Data związana ze statusem</th>
+                <th className="hidden py-4 sm:block">
+                  Data związana ze statusem
+                </th>
                 <th className="py-4 text-center">Wycinka</th>
                 <th className="px-2 py-4 text-center">Nasadzenia</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-600">
               {mappedLocations.map((location: LocationInputs) => (
-                <Location key={location.locationId} {...location} />
+                <LocationRow key={location.locationId} {...location} />
               ))}
             </tbody>
           </table>
