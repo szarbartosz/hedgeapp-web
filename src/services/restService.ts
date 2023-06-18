@@ -25,11 +25,11 @@ export const fetchLocations = () =>
       withCredentials: true,
     })
     .then((res) => {
-      console.log(res.data.locations);
       return res.data?.locations;
     });
 
-export const fetchLocation = (id: number) =>
+export const fetchLocation = (id: string | undefined) =>
+  id &&
   axios
     .get(`${import.meta.env.VITE_BACKEND_DOMAIN}/locations/${id}`, {
       withCredentials: true,

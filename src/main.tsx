@@ -9,7 +9,7 @@ import { SignUp } from './pages/register-page';
 import './index.css';
 import Locations from './pages/locations-page';
 import AddLocation from './pages/add-location-page';
-
+import Location from './pages/location-details';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -19,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: '/locations',
         element: <Locations />,
+      },
+      {
+        path: '/locations/:locationId',
+        element: <Location />,
       },
       {
         path: 'add/location',

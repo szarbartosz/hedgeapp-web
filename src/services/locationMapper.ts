@@ -14,7 +14,7 @@ export const mapLocations = (
     mapLocation(location, developers, statuses)
   );
 
-const mapLocation = (
+export const mapLocation = (
   location: LocationType,
   developers: DeveloperType[],
   statuses: StatusType[]
