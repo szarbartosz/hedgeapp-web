@@ -24,13 +24,6 @@ const TreeVariants = {
   },
 };
 
-const TreeTransition = {
-  repeat: Infinity,
-  repeatType: 'reverse',
-  duration: 0.5,
-  ease: 'easeInOut',
-};
-
 const WavingTrees: React.FC = () => {
   return (
     <motion.div
@@ -47,17 +40,32 @@ const WavingTrees: React.FC = () => {
         <motion.img
           src={treeIcon}
           variants={TreeVariants}
-          transition={TreeTransition}
+          transition={{
+            repeat: Infinity,
+            repeatType: 'reverse',
+            duration: 0.5,
+            ease: 'easeInOut',
+          }}
         />
         <motion.img
           src={treeIcon}
           variants={TreeVariants}
-          transition={TreeTransition}
+          transition={{
+            repeat: Infinity,
+            repeatType: 'reverse',
+            duration: 0.5,
+            ease: 'easeInOut',
+          }}
         />
         <motion.img
           src={treeIcon}
           variants={TreeVariants}
-          transition={TreeTransition}
+          transition={{
+            repeat: Infinity,
+            repeatType: 'reverse',
+            duration: 0.5,
+            ease: 'easeInOut',
+          }}
         />
       </motion.div>
     </motion.div>
