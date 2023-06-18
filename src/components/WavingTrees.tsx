@@ -33,10 +33,14 @@ const TreeTransition = {
 
 const WavingTrees: React.FC = () => {
   return (
-    <div className="flex min-h-screen flex-row items-center justify-center px-6 sm:px-8 lg:px-10">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="flex min-h-screen flex-row items-center justify-center px-6 sm:px-8 lg:px-10"
+    >
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+        initial="initial"
+        animate="animate"
         className="flex h-8 flex-row"
         variants={ContainerVariants}
       >
@@ -56,7 +60,7 @@ const WavingTrees: React.FC = () => {
           transition={TreeTransition}
         />
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
