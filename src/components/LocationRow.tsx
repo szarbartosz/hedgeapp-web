@@ -1,9 +1,8 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { LocationInputs } from '../types/rest';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import DeforestationIndicator from './DeforestationIndicator';
 import PlantingIndicator from './PlantingIndicator';
+import { PencilIcon } from '@heroicons/react/24/outline';
 
 const LocationRow: React.FC<LocationInputs> = ({
   locationId,
@@ -40,8 +39,11 @@ const LocationRow: React.FC<LocationInputs> = ({
       <td className="py-2" onClick={navigateToDetails}>
         <PlantingIndicator plantingDone={plantingDone} justify />
       </td>
-      <td className="hidden py-2 sm:table-cell" onClick={navigateToEdit}>
-        <FontAwesomeIcon icon={faPencil} />
+      <td
+        className="hidden py-2 hover:bg-neutral-300 sm:table-cell"
+        onClick={navigateToEdit}
+      >
+        <PencilIcon className="mx-auto h-5 w-5" />
       </td>
     </tr>
   );

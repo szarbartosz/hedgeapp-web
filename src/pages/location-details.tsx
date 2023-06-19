@@ -11,8 +11,7 @@ import { useEffect, useState } from 'react';
 import { mapLocation } from '../services/locationMapper';
 import DeforestationIndicator from '../components/DeforestationIndicator';
 import PlantingIndicator from '../components/PlantingIndicator';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencil } from '@fortawesome/free-solid-svg-icons';
+import { PencilIcon } from '@heroicons/react/24/outline';
 
 const Location: React.FC = () => {
   const navigate = useNavigate();
@@ -99,8 +98,8 @@ const Location: React.FC = () => {
               onClick={() => navigate(`/edit/locations/${locationId}`)}
             >
               <th className="p-4 text-right">Edytuj</th>
-              <td className="px-2 py-2">
-                <FontAwesomeIcon icon={faPencil} />
+              <td className="p-2">
+                <PencilIcon className="h-5 w-5" />
               </td>
             </tr>
           </tbody>

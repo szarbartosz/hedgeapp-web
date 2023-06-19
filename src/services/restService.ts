@@ -114,3 +114,12 @@ export const updateLocation = (data: LocationInputs) =>
     .then((res) => {
       return res.data;
     });
+
+export const deleteLocation = (id: string | undefined) =>
+  axios
+    .delete(`${import.meta.env.VITE_BACKEND_DOMAIN}/locations/${id}`, {
+      withCredentials: true,
+    })
+    .then((res) => {
+      return res.data;
+    });

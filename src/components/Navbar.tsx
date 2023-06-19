@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { Disclosure } from '@headlessui/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import treeIcon from '../assets/tree.png';
 import { Link, useLocation } from 'react-router-dom';
+import { XMarkIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const navigation = [
   { name: 'Lista obiektów', href: '/locations' },
@@ -35,9 +35,9 @@ const Navbar: React.FC = () => {
                     <span className="sr-only">Open main menu</span>
 
                     {open ? (
-                      <FontAwesomeIcon icon={faXmark} size="lg" />
+                      <XMarkIcon className="mx-auto h-6 w-6" />
                     ) : (
-                      <FontAwesomeIcon icon={faBars} size="lg" />
+                      <Bars3Icon className="mx-auto h-6 w-6" />
                     )}
                   </Disclosure.Button>
                 </motion.div>
