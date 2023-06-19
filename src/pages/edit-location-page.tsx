@@ -3,7 +3,6 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { DeveloperType, LocationInputs, StatusType } from '../types/rest';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import {
-  deleteLocation,
   fetchDevelopers,
   fetchLocation,
   fetchStatuses,
@@ -11,12 +10,8 @@ import {
 } from '../services/restService';
 import { useNavigate, useParams } from 'react-router-dom';
 import WavingTrees from '../components/WavingTrees';
-import { useState } from 'react';
-import ConfirmationModal from '../components/ConfirmationModal';
 
 const EditLocation: React.FC = () => {
-  const [deleteMode, setDeleteMode] = useState<boolean>(false);
-
   const { locationId } = useParams();
 
   const developers = useQuery(['developers'], fetchDevelopers);
@@ -58,13 +53,6 @@ const EditLocation: React.FC = () => {
     },
   });
 
-  const deleteMutation = useMutation({
-    mutationFn: deleteLocation,
-    onSuccess: () => {
-      navigate(`/locations`);
-    },
-  });
-
   const onSubmit: SubmitHandler<LocationInputs> = (data) => {
     console.log(data);
     updateMutation.mutate(data);
@@ -72,13 +60,6 @@ const EditLocation: React.FC = () => {
 
   return (
     <>
-      {deleteMode && (
-        <ConfirmationModal
-          isOpen={deleteMode}
-          onCancel={() => setDeleteMode(false)}
-          onConfirm={() => deleteMutation.mutate(locationId)}
-        />
-      )}
       {developers.isSuccess && statuses.isSuccess ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <form
@@ -291,18 +272,6 @@ const EditLocation: React.FC = () => {
                 transition={{ duration: 0.5 }}
               >
                 Zapisz
-              </motion.div>
-            </button>
-            <button
-              onClick={() => setDeleteMode(true)}
-              className="group relative flex w-full justify-center rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500"
-            >
-              <motion.div
-                initial={{ y: 0, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                Usuń
               </motion.div>
             </button>
           </form>

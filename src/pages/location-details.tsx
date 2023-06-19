@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import {
+  deleteLocation,
   fetchDevelopers,
   fetchLocation,
   fetchStatuses,
@@ -12,11 +13,14 @@ import { mapLocation } from '../services/locationMapper';
 import DeforestationIndicator from '../components/DeforestationIndicator';
 import PlantingIndicator from '../components/PlantingIndicator';
 import { PencilIcon } from '@heroicons/react/24/outline';
+import { TrashIcon } from '@heroicons/react/24/outline';
+import ConfirmationModal from '../components/ConfirmationModal';
 
 const Location: React.FC = () => {
   const navigate = useNavigate();
   const { locationId } = useParams();
 
+  const [deleteMode, setDeleteMode] = useState<boolean>(false);
   const [mappedLocation, setMappedLocation] = useState<LocationInputs>(
     {} as LocationInputs
   );
@@ -26,6 +30,13 @@ const Location: React.FC = () => {
   const location = useQuery(['location', locationId], () =>
     fetchLocation(locationId)
   );
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteLocation,
+    onSuccess: () => {
+      navigate(`/locations`);
+    },
+  });
 
   useEffect(() => {
     if (location.isSuccess && developers.isSuccess && statuses.isSuccess) {
@@ -37,6 +48,13 @@ const Location: React.FC = () => {
 
   return (
     <>
+      {deleteMode && (
+        <ConfirmationModal
+          isOpen={deleteMode}
+          onCancel={() => setDeleteMode(false)}
+          onConfirm={() => deleteMutation.mutate(locationId)}
+        />
+      )}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -93,14 +111,25 @@ const Location: React.FC = () => {
               </th>
               <td className="py-2">{mappedLocation.plantingDate}</td>
             </tr>
-            <tr
-              className="cursor-pointer hover:bg-neutral-200"
-              onClick={() => navigate(`/edit/locations/${locationId}`)}
-            >
-              <th className="p-4 text-right">Edytuj</th>
-              <td className="p-2">
-                <PencilIcon className="h-5 w-5" />
-              </td>
+            <tr className="bg-neutral-200">
+              <th
+                className="cursor-pointer p-8 hover:bg-neutral-300"
+                onClick={() => navigate(`/edit/locations/${locationId}`)}
+              >
+                <div className="flex content-center justify-center">
+                  <p>Edytuj</p>
+                  <PencilIcon className="mx-2 h-5 w-5" />
+                </div>
+              </th>
+              <th
+                className="cursor-pointer p-8 hover:bg-neutral-300"
+                onClick={() => setDeleteMode(true)}
+              >
+                <div className="flex content-center justify-center">
+                  <p>Usuń</p>
+                  <TrashIcon className="mx-2 h-5 w-5" />
+                </div>
+              </th>
             </tr>
           </tbody>
         </table>
