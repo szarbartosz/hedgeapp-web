@@ -13,7 +13,6 @@ export const SignUp: React.FC = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<AuthInputs>();
 
@@ -21,7 +20,7 @@ export const SignUp: React.FC = () => {
 
   const mutation = useMutation({
     mutationFn: signUp,
-    onSuccess: (data) => {
+    onSuccess: () => {
       navigate('/login');
     },
   });

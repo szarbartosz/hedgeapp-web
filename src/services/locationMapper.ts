@@ -35,5 +35,11 @@ export const mapLocation = (
   plantingDone: location.planting_done,
 });
 
-const formatDate = (date: string): string =>
-  !!date ? new Date(date).toISOString().split('T')[0] : 'Nie sprecyzowano';
+const formatDate = (date: string): string => {
+  const formatter = new Intl.DateTimeFormat('pl', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  return !!date ? formatter.format(new Date(date)) : '';
+};

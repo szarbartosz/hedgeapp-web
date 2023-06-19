@@ -15,21 +15,32 @@ const LocationRow: React.FC<LocationInputs> = ({
 }) => {
   const navigate = useNavigate();
 
+  const navigateToDetails = () => {
+    navigate(`${locationId}`);
+  };
+
+  const navigateToEdit = () => {
+    navigate(`/edit/locations/${locationId}`);
+  };
+
   return (
-    <tr
-      className="cursor-pointer hover:bg-neutral-200"
-      onClick={() => navigate(`${locationId}`)}
-    >
-      <td className="p-2">{locationName}</td>
-      <td className="hidden py-2 sm:table-cell">{status}</td>
-      <td className="hidden py-2 sm:table-cell">{issueDate}</td>
-      <td className="py-2">
+    <tr className="cursor-pointer hover:bg-neutral-200">
+      <td className="p-2" onClick={navigateToDetails}>
+        {locationName}
+      </td>
+      <td className="hidden py-2 sm:table-cell" onClick={navigateToDetails}>
+        {status}
+      </td>
+      <td className="hidden py-2 sm:table-cell" onClick={navigateToDetails}>
+        {issueDate ? issueDate : 'Nie sprecyzowano'}
+      </td>
+      <td className="py-2" onClick={navigateToDetails}>
         <DeforestationIndicator deforestationDone={deforestationDone} justify />
       </td>
-      <td className="py-2">
+      <td className="py-2" onClick={navigateToDetails}>
         <PlantingIndicator plantingDone={plantingDone} justify />
       </td>
-      <td className="hidden py-2 sm:table-cell">
+      <td className="hidden py-2 sm:table-cell" onClick={navigateToEdit}>
         <FontAwesomeIcon icon={faPencil} />
       </td>
     </tr>

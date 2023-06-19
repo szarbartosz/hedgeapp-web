@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import {
   fetchDevelopers,
@@ -11,8 +11,11 @@ import { useEffect, useState } from 'react';
 import { mapLocation } from '../services/locationMapper';
 import DeforestationIndicator from '../components/DeforestationIndicator';
 import PlantingIndicator from '../components/PlantingIndicator';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPencil } from '@fortawesome/free-solid-svg-icons';
 
 const Location: React.FC = () => {
+  const navigate = useNavigate();
   const { locationId } = useParams();
 
   const [mappedLocation, setMappedLocation] = useState<LocationInputs>(
@@ -90,6 +93,15 @@ const Location: React.FC = () => {
                 Czas do wykonania nasadzeń zastępczych
               </th>
               <td className="py-2">{mappedLocation.plantingDate}</td>
+            </tr>
+            <tr
+              className="cursor-pointer hover:bg-neutral-200"
+              onClick={() => navigate(`/edit/locations/${locationId}`)}
+            >
+              <th className="p-4 text-right">Edytuj</th>
+              <td className="px-2 py-2">
+                <FontAwesomeIcon icon={faPencil} />
+              </td>
             </tr>
           </tbody>
         </table>

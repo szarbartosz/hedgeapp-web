@@ -11,6 +11,7 @@ import Locations from './pages/locations-page';
 import AddLocation from './pages/add-location-page';
 import Location from './pages/location-details';
 import AddDeveloper from './pages/add-developer-page';
+import EditLocation from './pages/edit-location-page';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: 'add/developer',
         element: <AddDeveloper />,
+      },
+      {
+        path: 'edit/locations/:locationId',
+        element: <EditLocation />,
       },
     ],
   },

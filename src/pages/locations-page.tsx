@@ -24,7 +24,12 @@ const Locations: React.FC = () => {
         mapLocations(locations.data, developers.data, statuses.data)
       );
     }
-  }, [locations.isSuccess, developers.isSuccess, statuses.isSuccess]);
+  }, [
+    locations.isSuccess,
+    locations.data,
+    developers.isSuccess,
+    statuses.isSuccess,
+  ]);
 
   return (
     <>
