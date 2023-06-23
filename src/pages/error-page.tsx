@@ -1,13 +1,18 @@
 import { useRouteError } from 'react-router-dom';
+import { ErrorType } from '../types/rest';
 
 const ErrorPage: React.FC = () => {
-  const error = useRouteError();
+  const error: ErrorType = useRouteError() as ErrorType;
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
-      <p className="bold text-2xl">Oops!</p>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
+      <p className="bold text-2xl">Aj, karramba!</p>
+      <p className="py-2">
+        To nie powinno tak wyglądać! Proszę skontaktować się z Bartoszem w celu
+        usunięcia usterki.
+      </p>
+      <p className="text-sm">
+        <span>komunikat błędu: </span>
         <i>{error?.statusText || error?.message}</i>
       </p>
     </div>

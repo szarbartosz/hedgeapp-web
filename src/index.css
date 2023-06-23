@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Fraunces', sans-serif;
+  font-family: 'Quicksand', sans-serif;
   background-color: #f5f5f5;
+}
+
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
 }

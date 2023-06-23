@@ -1,39 +1,61 @@
 import { motion } from 'framer-motion';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { DeveloperType, LocationInputs, StatusType } from '../types/rest';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import {
-  addLocation,
   fetchDevelopers,
+  fetchLocation,
   fetchStatuses,
+  updateLocation,
 } from '../services/restService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import WavingTrees from '../components/WavingTrees';
 
-const AddLocation: React.FC = () => {
+const EditLocation: React.FC = () => {
+  const { locationId } = useParams();
+
   const developers = useQuery(['developers'], fetchDevelopers);
   const statuses = useQuery(['statuses'], fetchStatuses);
+
+  const formatDate = (date: string): string =>
+    !!date ? new Date(date).toISOString().split('T')[0] : '';
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LocationInputs>();
+  } = useForm<LocationInputs>({
+    defaultValues: async () => {
+      const loc = await fetchLocation(locationId);
+      console.log(loc);
+
+      return {
+        locationId: loc.id,
+        locationName: loc.name,
+        developer: loc.developer_id,
+        status: loc.status_id,
+        issueDate: formatDate(loc.issue_date),
+        inspectionDate: formatDate(loc.inspection_date),
+        deforestationDate: formatDate(loc.deforestation_date),
+        plantingDate: formatDate(loc.planting_date),
+        deforestationDone: loc.deforestation_done,
+        plantingDone: loc.planting_done,
+      };
+    },
+  });
 
   const navigate = useNavigate();
 
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation({
-    mutationFn: addLocation,
-    onSuccess: (data, variables) => {
-      queryClient.setQueryData(['locations', { ...variables }], data);
-      navigate('/locations');
+  const updateMutation = useMutation({
+    mutationFn: updateLocation,
+    onSuccess: () => {
+      navigate(`/locations/${locationId}`);
     },
   });
 
   const onSubmit: SubmitHandler<LocationInputs> = (data) => {
-    mutation.mutate(data);
+    console.log(data);
+    updateMutation.mutate(data);
   };
 
   return (
@@ -266,4 +288,4 @@ const AddLocation: React.FC = () => {
   );
 };
 
-export default AddLocation;
+export default EditLocation;
