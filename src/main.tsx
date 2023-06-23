@@ -12,6 +12,7 @@ import AddLocation from './pages/add-location-page';
 import Location from './pages/location-details';
 import AddDeveloper from './pages/add-developer-page';
 import EditLocation from './pages/edit-location-page';
+import Settings from './pages/settings-page';
 const router = createBrowserRouter([
   {
     path: '/login',
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/locations',
         element: <Locations />,
+      },
+      {
+        path: '/settings',
+        element: <Settings />,
       },
       {
         path: '/locations/:locationId',
