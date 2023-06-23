@@ -63,15 +63,15 @@ const Locations: React.FC = () => {
       ) : locations.isLoading ? (
         <WavingTrees />
       ) : (
-        <div>
+        <div className="flex h-96 w-72 flex-col items-center justify-center sm:w-full">
           <img
-            className="mx-auto my-4 block h-16 w-auto"
+            className="my-4 block h-16 w-auto"
             src={hedgehogIcon}
             alt="wycinka wykonana"
           />
-          <h2 className="text-center text-xl text-neutral-600">
+          <p className="break-words text-center text-xl text-neutral-600">
             Nie zdefiniowałeś jeszcze żadnej inwestycji!
-          </h2>
+          </p>
           <p className="text-md mt-2 text-center text-neutral-600">
             Chcesz to zmienić?{' '}
             <NavLink to={'/add/location'}>
