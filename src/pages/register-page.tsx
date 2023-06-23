@@ -62,9 +62,9 @@ export const SignUp: React.FC = () => {
               <p className="mt-2 text-center text-sm text-gray-600">
                 Masz już konto?{' '}
                 <NavLink to={'/login'}>
-                  <a className="font-medium text-emerald-600 hover:text-emerald-700">
+                  <span className="font-medium text-emerald-600 hover:text-emerald-700">
                     Zaloguj się!
-                  </a>
+                  </span>
                 </NavLink>
               </p>
             </motion.div>
