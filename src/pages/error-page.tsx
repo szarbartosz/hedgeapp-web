@@ -1,7 +1,8 @@
 import { useRouteError } from 'react-router-dom';
+import { ErrorType } from '../types/rest';
 
 const ErrorPage: React.FC = () => {
-  const error = useRouteError();
+  const error: ErrorType = useRouteError() as ErrorType;
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">

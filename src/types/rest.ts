@@ -1,3 +1,8 @@
+export type ErrorType = {
+  statusText: string;
+  message: string;
+}
+
 export type DeveloperType = {
   id: number;
   name: string;
