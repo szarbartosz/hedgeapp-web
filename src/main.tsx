@@ -14,6 +14,8 @@ import AddDeveloper from './pages/add-developer-page';
 import EditLocation from './pages/edit-location-page';
 import Settings from './pages/settings-page';
 import ProtectedRoute from './components/ProtectedRoute';
+import PageNotFound from './pages/not-found';
+
 const router = createBrowserRouter([
   {
     path: '/login',
@@ -28,7 +30,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <ProtectedRoute isSignedIn={true}>
+      <ProtectedRoute>
         <App />
       </ProtectedRoute>
     ),
@@ -36,29 +38,65 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/locations',
-        element: <Locations />,
+        element: (
+          <ProtectedRoute>
+            <Locations />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/settings',
-        element: <Settings />,
+        element: (
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/locations/:locationId',
-        element: <Location />,
+        element: (
+          <ProtectedRoute>
+            <Location />
+          </ProtectedRoute>
+        ),
       },
       {
         path: 'locations/add',
-        element: <AddLocation />,
+        element: (
+          <ProtectedRoute>
+            <AddLocation />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/developers/add',
-        element: <AddDeveloper />,
+        element: (
+          <ProtectedRoute>
+            <AddDeveloper />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/locations/:locationId/edit',
-        element: <EditLocation />,
+        element: (
+          <ProtectedRoute>
+            <EditLocation />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '*',
+        element: (
+          <ProtectedRoute>
+            <PageNotFound />
+          </ProtectedRoute>
+        ),
       },
     ],
+  },
+  {
+    path: '*',
+    element: <PageNotFound />,
   },
 ]);
 

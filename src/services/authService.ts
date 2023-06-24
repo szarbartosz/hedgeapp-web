@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { AuthInputs } from '../types/auth';
+import Cookies from 'js-cookie';
 
 export const signIn = (credentials: AuthInputs) =>
   axios
@@ -14,6 +15,7 @@ export const signIn = (credentials: AuthInputs) =>
       }
     )
     .then((res) => {
+      Cookies.set('hedgeAppCookie', 'success');
       return res.data;
     });
 
