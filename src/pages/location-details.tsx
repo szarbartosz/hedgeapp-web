@@ -114,7 +114,7 @@ const Location: React.FC = () => {
             <tr className="bg-neutral-200">
               <th
                 className="cursor-pointer p-8 hover:bg-neutral-300"
-                onClick={() => navigate(`/edit/locations/${locationId}`)}
+                onClick={() => navigate(`/locations/${locationId}/edit`)}
               >
                 <div className="flex content-center justify-center">
                   <p>Edytuj</p>

@@ -74,7 +74,7 @@ const Locations: React.FC = () => {
           </p>
           <p className="text-md mt-2 text-center text-neutral-600">
             Chcesz to zmienić?{' '}
-            <NavLink to={'/add/location'}>
+            <NavLink to={'/locations/add'}>
               <span className="font-medium text-emerald-600 hover:text-emerald-700">
                 Dodaj nowy obiekt!
               </span>

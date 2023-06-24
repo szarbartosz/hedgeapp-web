@@ -19,7 +19,7 @@ const LocationRow: React.FC<LocationInputs> = ({
   };
 
   const navigateToEdit = () => {
-    navigate(`/edit/locations/${locationId}`);
+    navigate(`/locations/${locationId}/edit`);
   };
 
   return (

@@ -7,8 +7,8 @@ import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const navigation = [
   { name: 'Lista obiektów', href: '/locations' },
-  { name: 'Dodaj obiekt', href: '/add/location' },
-  { name: 'Dodaj dewelopera', href: '/add/developer' },
+  { name: 'Dodaj obiekt', href: '/locations/add' },
+  { name: 'Dodaj dewelopera', href: '/developers/add' },
   { name: 'Ustawienia', href: '/settings' },
 ];
 
