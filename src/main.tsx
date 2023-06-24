@@ -13,6 +13,7 @@ import Location from './pages/location-details';
 import AddDeveloper from './pages/add-developer-page';
 import EditLocation from './pages/edit-location-page';
 import Settings from './pages/settings-page';
+import ProtectedRoute from './components/ProtectedRoute';
 const router = createBrowserRouter([
   {
     path: '/login',
@@ -26,7 +27,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <App />,
+    element: (
+      <ProtectedRoute isSignedIn={true}>
+        <App />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
@@ -42,15 +47,15 @@ const router = createBrowserRouter([
         element: <Location />,
       },
       {
-        path: 'add/location',
+        path: 'locations/add',
         element: <AddLocation />,
       },
       {
-        path: 'add/developer',
+        path: '/developers/add',
         element: <AddDeveloper />,
       },
       {
-        path: 'edit/locations/:locationId',
+        path: '/locations/:locationId/edit',
         element: <EditLocation />,
       },
     ],
