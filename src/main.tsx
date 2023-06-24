@@ -12,7 +12,18 @@ import AddLocation from './pages/add-location-page';
 import Location from './pages/location-details';
 import AddDeveloper from './pages/add-developer-page';
 import EditLocation from './pages/edit-location-page';
+import Settings from './pages/settings-page';
 const router = createBrowserRouter([
+  {
+    path: '/login',
+    element: <SignIn />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/register',
+    element: <SignUp />,
+    errorElement: <ErrorPage />,
+  },
   {
     path: '/',
     element: <App />,
@@ -21,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: '/locations',
         element: <Locations />,
+      },
+      {
+        path: '/settings',
+        element: <Settings />,
       },
       {
         path: '/locations/:locationId',
@@ -39,16 +54,6 @@ const router = createBrowserRouter([
         element: <EditLocation />,
       },
     ],
-  },
-  {
-    path: '/login',
-    element: <SignIn />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/register',
-    element: <SignUp />,
-    errorElement: <ErrorPage />,
   },
 ]);
 

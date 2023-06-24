@@ -18,7 +18,7 @@ const Navbar: React.FC = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="fixed z-10 w-full">
+    <div className="fixed top-0 z-10 w-full">
       <Disclosure as="nav" className="bg-neutral-100 shadow-md">
         {({ open }) => (
           <>

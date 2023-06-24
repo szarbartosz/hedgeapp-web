@@ -10,6 +10,8 @@ import { mapLocations } from '../services/locationMapper';
 import WavingTrees from '../components/WavingTrees';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import hedgehogIcon from '../assets/hedgehog.png';
 
 const Locations: React.FC = () => {
   const [mappedLocations, setMappedLocations] = useState<LocationInputs[]>([]);
@@ -58,10 +60,27 @@ const Locations: React.FC = () => {
             </tbody>
           </table>
         </motion.div>
-      ) : locations.isLoading || locations.isSuccess ? (
+      ) : locations.isLoading ? (
         <WavingTrees />
       ) : (
-        <h1>Nie zdefiniowałeś jeszcze żadnej inwestycji!</h1>
+        <div className="flex h-96 w-72 flex-col items-center justify-center sm:w-full">
+          <img
+            className="my-4 block h-16 w-auto"
+            src={hedgehogIcon}
+            alt="wycinka wykonana"
+          />
+          <p className="break-words text-center text-xl text-neutral-600">
+            Nie zdefiniowałeś jeszcze żadnej inwestycji!
+          </p>
+          <p className="text-md mt-2 text-center text-neutral-600">
+            Chcesz to zmienić?{' '}
+            <NavLink to={'/add/location'}>
+              <span className="font-medium text-emerald-600 hover:text-emerald-700">
+                Dodaj nowy obiekt!
+              </span>
+            </NavLink>
+          </p>
+        </div>
       )}
     </>
   );
