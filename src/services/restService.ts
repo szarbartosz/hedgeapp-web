@@ -3,7 +3,7 @@ import { DeveloperInputs, LocationInputs } from '../types/rest';
 
 export const fetchDevelopers = () =>
   axios
-    .get(`${import.meta.env.BACKEND_DOMAIN}/developers`, {
+    .get(`${import.meta.env.VITE_BACKEND_DOMAIN}/developers`, {
       withCredentials: true,
     })
     .then((res) => {
@@ -12,7 +12,7 @@ export const fetchDevelopers = () =>
 
 export const fetchStatuses = () =>
   axios
-    .get(`${import.meta.env.BACKEND_DOMAIN}/statuses`, {
+    .get(`${import.meta.env.VITE_BACKEND_DOMAIN}/statuses`, {
       withCredentials: true,
     })
     .then((res) => {
@@ -21,7 +21,7 @@ export const fetchStatuses = () =>
 
 export const fetchLocations = () =>
   axios
-    .get(`${import.meta.env.BACKEND_DOMAIN}/locations`, {
+    .get(`${import.meta.env.VITE_BACKEND_DOMAIN}/locations`, {
       withCredentials: true,
     })
     .then((res) => {
@@ -31,7 +31,7 @@ export const fetchLocations = () =>
 export const fetchLocation = (id: string | undefined) =>
   id &&
   axios
-    .get(`${import.meta.env.BACKEND_DOMAIN}/locations/${id}`, {
+    .get(`${import.meta.env.VITE_BACKEND_DOMAIN}/locations/${id}`, {
       withCredentials: true,
     })
     .then((res) => {
@@ -41,7 +41,7 @@ export const fetchLocation = (id: string | undefined) =>
 export const addLocation = (data: LocationInputs) =>
   axios
     .post(
-      `${import.meta.env.BACKEND_DOMAIN}/locations`,
+      `${import.meta.env.VITE_BACKEND_DOMAIN}/locations`,
       {
         status_id: parseInt(data.status),
         developer_id: parseInt(data.developer),
@@ -72,7 +72,7 @@ export const addLocation = (data: LocationInputs) =>
 export const addDeveloper = (data: DeveloperInputs) =>
   axios
     .post(
-      `${import.meta.env.BACKEND_DOMAIN}/developers`,
+      `${import.meta.env.VITE_BACKEND_DOMAIN}/developers`,
       {
         name: data.name,
       },
@@ -87,7 +87,7 @@ export const addDeveloper = (data: DeveloperInputs) =>
 export const updateLocation = (data: LocationInputs) =>
   axios
     .put(
-      `${import.meta.env.BACKEND_DOMAIN}/locations/${data.locationId}`,
+      `${import.meta.env.VITE_BACKEND_DOMAIN}/locations/${data.locationId}`,
       {
         status_id: parseInt(data.status),
         developer_id: parseInt(data.developer),
@@ -117,7 +117,7 @@ export const updateLocation = (data: LocationInputs) =>
 
 export const deleteLocation = (id: string | undefined) =>
   axios
-    .delete(`${import.meta.env.BACKEND_DOMAIN}/locations/${id}`, {
+    .delete(`${import.meta.env.VITE_BACKEND_DOMAIN}/locations/${id}`, {
       withCredentials: true,
     })
     .then((res) => {

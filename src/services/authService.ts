@@ -4,7 +4,7 @@ import { AuthInputs } from '../types/auth';
 export const signIn = (credentials: AuthInputs) =>
   axios
     .post(
-      `${import.meta.env.BACKEND_DOMAIN}/login`,
+      `${import.meta.env.VITE_BACKEND_DOMAIN}/login`,
       {
         email: credentials.email,
         password: credentials.password,
@@ -19,7 +19,7 @@ export const signIn = (credentials: AuthInputs) =>
 
 export const signUp = (credentials: AuthInputs) =>
   axios
-    .post(`${import.meta.env.BACKEND_DOMAIN}/register`, {
+    .post(`${import.meta.env.VITE_BACKEND_DOMAIN}/register`, {
       email: credentials.email,
       password: credentials.password,
     })
