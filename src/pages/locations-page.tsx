@@ -50,7 +50,9 @@ const Locations: React.FC = () => {
                   Data związana ze statusem
                 </th>
                 <th className="py-4 text-center">Wycinka</th>
+                <th className="hidden py-4 sm:table-cell">Pozostały czas</th>
                 <th className="px-2 py-4 text-center">Nasadzenia</th>
+                <th className="hidden py-4 sm:table-cell">Pozostały czas</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-600">

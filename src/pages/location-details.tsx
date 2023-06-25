@@ -9,12 +9,13 @@ import {
 } from '../services/restService';
 import { LocationInputs } from '../types/rest';
 import { useEffect, useState } from 'react';
-import { mapLocation } from '../services/locationMapper';
+import { formatDate, mapLocation } from '../services/locationMapper';
 import DeforestationIndicator from '../components/DeforestationIndicator';
 import PlantingIndicator from '../components/PlantingIndicator';
 import { PencilIcon } from '@heroicons/react/24/outline';
 import { TrashIcon } from '@heroicons/react/24/outline';
 import ConfirmationModal from '../components/ConfirmationModal';
+import DaysLeft from '../components/DaysLeft';
 
 const Location: React.FC = () => {
   const navigate = useNavigate();
@@ -76,11 +77,13 @@ const Location: React.FC = () => {
             </tr>
             <tr>
               <th className="p-4 text-right">Data zgłoszenia wniosku</th>
-              <td className="py-2">{mappedLocation.issueDate}</td>
+              <td className="py-2">{formatDate(mappedLocation.issueDate)}</td>
             </tr>
             <tr>
               <th className="p-4 text-right">Data oględzin</th>
-              <td className="py-2">{mappedLocation.inspectionDate}</td>
+              <td className="py-2">
+                {formatDate(mappedLocation.inspectionDate)}
+              </td>
             </tr>
             <tr>
               <th className="p-4 text-right">Data wydania decyzji</th>
@@ -97,7 +100,9 @@ const Location: React.FC = () => {
             </tr>
             <tr>
               <th className="p-4 text-right">Czas do wycinki</th>
-              <td className="py-2">{mappedLocation.deforestationDate}</td>
+              <td className="py-2">
+                <DaysLeft deadline={mappedLocation.deforestationDate} />
+              </td>
             </tr>
             <tr>
               <th className="p-4 text-right">Nasadzenia zastępcze</th>
@@ -109,7 +114,9 @@ const Location: React.FC = () => {
               <th className="p-4 text-right">
                 Czas do wykonania nasadzeń zastępczych
               </th>
-              <td className="py-2">{mappedLocation.plantingDate}</td>
+              <td className="py-2">
+                <DaysLeft deadline={mappedLocation.plantingDate} />
+              </td>
             </tr>
             <tr className="bg-neutral-200">
               <th
