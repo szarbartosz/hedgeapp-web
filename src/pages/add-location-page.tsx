@@ -42,7 +42,7 @@ const AddLocation: React.FC = () => {
       {developers.isSuccess && statuses.isSuccess ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <p className="break-words py-4 text-center text-xl text-neutral-600">
-            Zdefiniuj nowy obiekt
+            Zdefiniuj nowy obiekt.
           </p>
           <img
             src={forestIcon}

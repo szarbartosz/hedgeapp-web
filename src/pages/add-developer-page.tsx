@@ -29,7 +29,7 @@ const AddDeveloper: React.FC = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <p className="break-words py-4 text-center text-xl text-neutral-600">
-        Zdefiniuj nowego dewelopera
+        Zdefiniuj nowego dewelopera.
       </p>
       <img
         src={excavatorIcon}
