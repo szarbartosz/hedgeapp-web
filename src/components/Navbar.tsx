@@ -7,8 +7,8 @@ import { Bars3Icon } from '@heroicons/react/24/outline';
 
 const navigation = [
   { name: 'Lista obiektów', href: '/locations' },
-  { name: 'Dodaj obiekt', href: '/add/location' },
-  { name: 'Dodaj dewelopera', href: '/add/developer' },
+  { name: 'Dodaj obiekt', href: '/locations/add' },
+  { name: 'Dodaj dewelopera', href: '/developers/add' },
   { name: 'Ustawienia', href: '/settings' },
 ];
 
@@ -79,24 +79,30 @@ const Navbar: React.FC = () => {
             </div>
 
             <Disclosure.Panel className="sm:hidden">
-              <div className="space-y-1 px-2 pb-3 pt-2">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    className={classNames(
-                      item.href === pathname
-                        ? 'text-emerald-600'
-                        : 'text-neutral-600 hover:text-emerald-600',
-                      'block rounded-md px-3 py-2 text-base font-medium'
-                    )}
-                    aria-current={item.href === pathname ? 'page' : undefined}
-                  >
-                    <div>
-                      <Link to={item.href}>{item.name}</Link>
-                    </div>
-                  </Disclosure.Button>
-                ))}
-              </div>
+              {({ close }) => (
+                <div className="space-y-1 px-2 pb-3 pt-2">
+                  {navigation.map((item) => (
+                    <Disclosure.Button
+                      key={item.name}
+                      className={classNames(
+                        item.href === pathname
+                          ? 'text-emerald-600'
+                          : 'text-neutral-600 hover:text-emerald-600',
+                        'block rounded-md px-3 py-2 text-base font-medium'
+                      )}
+                      aria-current={item.href === pathname ? 'page' : undefined}
+                    >
+                      <div
+                        onClick={() => {
+                          close();
+                        }}
+                      >
+                        <Link to={item.href}>{item.name}</Link>
+                      </div>
+                    </Disclosure.Button>
+                  ))}
+                </div>
+              )}
             </Disclosure.Panel>
           </>
         )}

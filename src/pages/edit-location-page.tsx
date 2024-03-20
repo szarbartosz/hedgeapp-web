@@ -54,7 +54,7 @@ const EditLocation: React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<LocationInputs> = (data) => {
-    console.log(data);
+    // TODO improve mutating to update view without refreshing
     updateMutation.mutate(data);
   };
 

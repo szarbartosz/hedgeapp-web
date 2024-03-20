@@ -50,7 +50,9 @@ const Locations: React.FC = () => {
                   Data związana ze statusem
                 </th>
                 <th className="py-4 text-center">Wycinka</th>
+                <th className="hidden py-4 sm:table-cell">Pozostały czas</th>
                 <th className="px-2 py-4 text-center">Nasadzenia</th>
+                <th className="hidden py-4 sm:table-cell">Pozostały czas</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-600">
@@ -74,7 +76,7 @@ const Locations: React.FC = () => {
           </p>
           <p className="text-md mt-2 text-center text-neutral-600">
             Chcesz to zmienić?{' '}
-            <NavLink to={'/add/location'}>
+            <NavLink to={'/locations/add'}>
               <span className="font-medium text-emerald-600 hover:text-emerald-700">
                 Dodaj nowy obiekt!
               </span>

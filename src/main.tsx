@@ -13,6 +13,9 @@ import Location from './pages/location-details';
 import AddDeveloper from './pages/add-developer-page';
 import EditLocation from './pages/edit-location-page';
 import Settings from './pages/settings-page';
+import ProtectedRoute from './components/ProtectedRoute';
+import PageNotFound from './pages/not-found';
+
 const router = createBrowserRouter([
   {
     path: '/login',
@@ -26,34 +29,74 @@ const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <App />,
+    element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {
         path: '/locations',
-        element: <Locations />,
+        element: (
+          <ProtectedRoute>
+            <Locations />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/settings',
-        element: <Settings />,
+        element: (
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        ),
       },
       {
         path: '/locations/:locationId',
-        element: <Location />,
+        element: (
+          <ProtectedRoute>
+            <Location />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: 'add/location',
-        element: <AddLocation />,
+        path: 'locations/add',
+        element: (
+          <ProtectedRoute>
+            <AddLocation />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: 'add/developer',
-        element: <AddDeveloper />,
+        path: '/developers/add',
+        element: (
+          <ProtectedRoute>
+            <AddDeveloper />
+          </ProtectedRoute>
+        ),
       },
       {
-        path: 'edit/locations/:locationId',
-        element: <EditLocation />,
+        path: '/locations/:locationId/edit',
+        element: (
+          <ProtectedRoute>
+            <EditLocation />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '*',
+        element: (
+          <ProtectedRoute>
+            <PageNotFound />
+          </ProtectedRoute>
+        ),
       },
     ],
+  },
+  {
+    path: '*',
+    element: <PageNotFound />,
   },
 ]);
 

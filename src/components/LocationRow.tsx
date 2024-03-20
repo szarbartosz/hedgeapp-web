@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import DeforestationIndicator from './DeforestationIndicator';
 import PlantingIndicator from './PlantingIndicator';
 import { PencilIcon } from '@heroicons/react/24/outline';
+import { formatDate } from '../services/locationMapper';
+import DaysLeft from './DaysLeft';
 
 const LocationRow: React.FC<LocationInputs> = ({
   locationId,
@@ -10,7 +12,9 @@ const LocationRow: React.FC<LocationInputs> = ({
   status,
   issueDate,
   deforestationDone,
+  deforestationDate,
   plantingDone,
+  plantingDate,
 }) => {
   const navigate = useNavigate();
 
@@ -19,7 +23,7 @@ const LocationRow: React.FC<LocationInputs> = ({
   };
 
   const navigateToEdit = () => {
-    navigate(`/edit/locations/${locationId}`);
+    navigate(`/locations/${locationId}/edit`);
   };
 
   return (
@@ -31,13 +35,19 @@ const LocationRow: React.FC<LocationInputs> = ({
         {status}
       </td>
       <td className="hidden py-2 sm:table-cell" onClick={navigateToDetails}>
-        {issueDate ? issueDate : 'Nie sprecyzowano'}
+        {issueDate ? formatDate(issueDate) : 'Nie sprecyzowano'}
       </td>
       <td className="py-2" onClick={navigateToDetails}>
         <DeforestationIndicator deforestationDone={deforestationDone} justify />
       </td>
+      <td className="hidden py-2 sm:table-cell" onClick={navigateToDetails}>
+        <DaysLeft deadline={deforestationDate} />
+      </td>
       <td className="py-2" onClick={navigateToDetails}>
         <PlantingIndicator plantingDone={plantingDone} justify />
+      </td>
+      <td className="hidden py-2 sm:table-cell" onClick={navigateToDetails}>
+        <DaysLeft deadline={plantingDate} />
       </td>
       <td
         className="hidden py-2 hover:bg-neutral-300 sm:table-cell"

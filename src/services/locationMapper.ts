@@ -27,15 +27,15 @@ export const mapLocation = (
   status:
     statuses?.find((status) => status.id === location.status_id)?.name ||
     'status nieznany',
-  issueDate: formatDate(location.issue_date),
-  inspectionDate: formatDate(location.inspection_date),
-  deforestationDate: formatDate(location.deforestation_date),
-  plantingDate: formatDate(location.planting_date),
+  issueDate: location.issue_date,
+  inspectionDate: location.inspection_date,
+  deforestationDate: location.deforestation_date,
+  plantingDate: location.planting_date,
   deforestationDone: location.deforestation_done,
   plantingDone: location.planting_done,
 });
 
-const formatDate = (date: string): string => {
+export const formatDate = (date: string): string => {
   const formatter = new Intl.DateTimeFormat('pl', {
     day: 'numeric',
     month: 'long',

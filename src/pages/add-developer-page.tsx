@@ -4,6 +4,7 @@ import { DeveloperInputs } from '../types/rest';
 import { useMutation } from '@tanstack/react-query';
 import { addDeveloper } from '../services/restService';
 import { useNavigate } from 'react-router-dom';
+import excavatorIcon from '../assets/excavator.png';
 
 const AddDeveloper: React.FC = () => {
   const {
@@ -27,6 +28,14 @@ const AddDeveloper: React.FC = () => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+      <p className="break-words py-4 text-center text-xl text-neutral-600">
+        Zdefiniuj nowego dewelopera.
+      </p>
+      <img
+        src={excavatorIcon}
+        alt="excavator icon"
+        className="mx-auto mb-6 h-24 w-24"
+      />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-72 space-y-6 sm:w-96"

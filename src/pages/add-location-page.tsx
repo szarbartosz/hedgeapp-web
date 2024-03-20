@@ -9,6 +9,7 @@ import {
 } from '../services/restService';
 import { useNavigate } from 'react-router-dom';
 import WavingTrees from '../components/WavingTrees';
+import forestIcon from '../assets/forest.png';
 
 const AddLocation: React.FC = () => {
   const developers = useQuery(['developers'], fetchDevelopers);
@@ -40,6 +41,14 @@ const AddLocation: React.FC = () => {
     <>
       {developers.isSuccess && statuses.isSuccess ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <p className="break-words py-4 text-center text-xl text-neutral-600">
+            Zdefiniuj nowy obiekt.
+          </p>
+          <img
+            src={forestIcon}
+            alt="forest icon"
+            className="mx-auto mb-6 h-24 w-24"
+          />
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="w-72 space-y-6 sm:w-full"
